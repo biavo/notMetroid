@@ -20,6 +20,9 @@ public class MouseLook : MonoBehaviour
     public bool hasTarget;              //MAKE SURE BULLETS AREN'T IN
     public float gMJtimer;
     public bool isMorph;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot;
     
     
                         //If the mouse points at empty space then the gun will NOT follow
@@ -29,6 +32,11 @@ public class MouseLook : MonoBehaviour
 
 
 
+    void Start(){
+        Cursor.visible = true;
+        hotSpot = new Vector2(cursorTexture.width/2, cursorTexture.height/2);
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+    }
     void Update() {
         playerBodyPos = playerBody.position;
         isMorph = playerBody.GetComponent<PlayerMovement>().isMorph;
@@ -57,7 +65,6 @@ public class MouseLook : MonoBehaviour
         }
         if(!Input.GetButton("Fire2")){                                                  //what to do while not locked on to something
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
             xRotation -= mouseY;
@@ -74,7 +81,6 @@ public class MouseLook : MonoBehaviour
                 playerBody.transform.LookAt(new Vector3(target.transform.position.x, playerBody.transform.position.y, target.transform.position.z));
                 transform.LookAt(target);
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
                                                                 //grapple move code is in mouselook instead of movement for some reason
                 if(grapple && (Vector3.Distance(playerBody.transform.position, target.position) > 6f) && (Vector3.Distance(playerBody.transform.position, target.position) < 40f) ){
                     playerBody.transform.position = Vector3.MoveTowards(playerBody.transform.position, target.position, step);
@@ -87,7 +93,6 @@ public class MouseLook : MonoBehaviour
                 }
             } else{
                 Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
             }
         }
         if(playerBody.GetComponent<PlayerMovement>().isGrounded){
