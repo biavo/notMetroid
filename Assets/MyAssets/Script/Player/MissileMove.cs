@@ -15,6 +15,7 @@ public class MissileMove : MonoBehaviour
     Vector3 turnDirection;
     bool hasTarget;
     bool buttonReleased;
+    public float spinSpeed;
 
     void Awake(){
         mainCam = GameObject.Find("Main Camera");
@@ -26,6 +27,7 @@ public class MissileMove : MonoBehaviour
         Destroy(gameObject);
     }
     void Update (){
+        transform.Rotate(new Vector3(0,0,spinSpeed), Space.Self);
         if(Input.GetButtonUp("Fire2")){
             buttonReleased = true;
         }
@@ -58,8 +60,8 @@ public class MissileMove : MonoBehaviour
                 targetV3 = mainCam.GetComponent<MouseLook>().hitPoint;
                 hasTarget = true;                                                   //if no target and no lockon then it flies straight 
                 print("no lock");                                                   //needed a vector3 instead of transform because it's picky
-            } else{
                 transform.LookAt(targetV3);
+            } else{
                 transform.Translate(0,0,missileSpeed, Space.Self);
             }
         }
