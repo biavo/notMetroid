@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
         // the same style of checking, but with different sized areas to 
         // check in.
     public bool isGrounded;
+    Transform movePlatCheck;
     Transform groundCheck;
     float groundDistance = 0.2f;
     public LayerMask groundMask;
@@ -58,12 +59,14 @@ public class PlayerMovement : MonoBehaviour
     public bool touchingWall;
     public bool walljumped;
     public bool grabbingWall;
+    public bool movplat;
 
 
 
     void Awake(){
             //setting all check objects to their proper place
         dashesLeft = dashesMax;
+        movePlatCheck = GameObject.Find("MovePlatCheck").transform;
         groundCheck = GameObject.Find("GroundCheck").transform;
         waterCheck = GameObject.Find("WaterCheck").transform;
         roofChecker = GameObject.Find("RoofCheck").transform;
@@ -100,6 +103,15 @@ public class PlayerMovement : MonoBehaviour
         isRoof = Physics.CheckSphere(roofChecker.position, roofDistance, roofMask);
         canWallJump = Physics.CheckSphere(groundCheck.position, wallJumpSphere, wallJumpMask);
         touchingWall = Physics.CheckSphere(groundCheck.position, wallJumpLeavingSphere, wallJumpMask);
+        
+        RaycastHit hit;
+        if(Physics.Raycast(movePlatCheck.position, Vector3.down, out hit, groundDistance * 4, groundMask) && hit.collider.tag == "MovingPlatform"){
+            movplat = true;
+            transform.parent = hit.transform;
+        } else {
+            movplat = false;
+            transform.parent = null;
+        }
 
         if(isGrounded && velocity.y <0){    //y velocity while grounded is slightly lower than 0 to keep the player grounded
             velocity.y = -2f;
