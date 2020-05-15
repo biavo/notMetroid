@@ -26,7 +26,7 @@ public class MissileMove : MonoBehaviour
     void OnTriggerEnter (Collider collision){
         Destroy(gameObject);
     }
-    void Update (){
+    void FixedUpdate (){
         transform.Rotate(new Vector3(0,0,spinSpeed), Space.Self);
         if(Input.GetButtonUp("Fire2")){
             buttonReleased = true;

@@ -26,7 +26,7 @@ public class Enemy1 : MonoBehaviour
         if (timer >= wanderTimer) {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
-            Debug.Log(newPos);
+           // Debug.Log(newPos);
             timer = 0;
             wanderTimer = Random.Range(wanderTimer-wanderTimerRange, wanderTimer+wanderTimerRange);
         }

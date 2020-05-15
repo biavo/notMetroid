@@ -6094,7 +6094,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304684541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 32.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 32169175}
@@ -6772,17 +6772,17 @@ PrefabInstance:
     - target: {fileID: 9007944936433397757, guid: 09f2246919a822042bede77d3a6e6c97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -121.35672
+      value: -128.8
       objectReference: {fileID: 0}
     - target: {fileID: 9007944936433397757, guid: 09f2246919a822042bede77d3a6e6c97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0628614
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 9007944936433397757, guid: 09f2246919a822042bede77d3a6e6c97,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -84.35472
+      value: -81.1
       objectReference: {fileID: 0}
     - target: {fileID: 9007944936433397757, guid: 09f2246919a822042bede77d3a6e6c97,
         type: 3}
@@ -9947,7 +9947,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16154
+  m_Name: pb_Mesh122620
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -11902,6 +11902,8 @@ GameObject:
   - component: {fileID: 1217088961}
   - component: {fileID: 1217088967}
   - component: {fileID: 1217088966}
+  - component: {fileID: 1217088968}
+  - component: {fileID: 1217088969}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -17658,7 +17660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217088960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -172.5, y: 0, z: -136.5}
+  m_LocalPosition: {x: -177.9, y: 3.52, z: -126.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 32169175}
@@ -17677,19 +17679,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fedddb5ee60e054db9e1d365b1aa3cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumping: 0
   p1: {fileID: 551426580}
   p2: {fileID: 241379715}
   p3: {fileID: 304684542}
   player: {fileID: 306159254}
-  pv: {x: 0, y: 0, z: 0}
-  p1v: {x: 0, y: 0, z: 0}
-  p2v: {x: 0, y: 0, z: 0}
-  p3v: {x: 0, y: 0, z: 0}
-  xDistance: 0
-  zDistance: 0
   timer: 0
-  jumpTimer: 3
+  jumpTimer: 2
+  jumpMask:
+    serializedVersion: 2
+    m_Bits: 256
+  playerDistance: 0
+  eating: 0
+  wanderRadius: 15
+  wanderTimer: 3
+  wanderTimerRange: 0.5
 --- !u!114 &1217088967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17702,10 +17705,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51d67e3e8cbd6f4d8578811cb31e60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 30
+  Speed: 50
   ParabolaRoot: {fileID: 32169174}
   Autostart: 0
   Animation: 1
+--- !u!195 &1217088968
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217088960}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 3.488855
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 26
+  m_BaseOffset: 0
+  m_WalkableMask: 21
+  m_ObstacleAvoidanceType: 4
+--- !u!65 &1217088969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217088960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 150, y: 50, z: 150}
+  m_Center: {x: 0, y: 20, z: 0}
 --- !u!43 &1240043391
 Mesh:
   m_ObjectHideFlags: 0
@@ -19165,7 +19203,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 40
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1591767470
 MeshCollider:
@@ -34633,8 +34671,8 @@ GameObject:
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 1
-  m_StaticEditorFlags: 8
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!64 &1662889519
 MeshCollider:
@@ -35291,7 +35329,7 @@ GameObject:
   m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1770100750
 Transform:
@@ -46671,7 +46709,7 @@ PrefabInstance:
     - target: {fileID: 5224957522216808947, guid: 803850811fd012c4e87ac813cb7bf687,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -135.2
+      value: -84.6
       objectReference: {fileID: 0}
     - target: {fileID: 5224957522216808947, guid: 803850811fd012c4e87ac813cb7bf687,
         type: 3}
@@ -46681,7 +46719,7 @@ PrefabInstance:
     - target: {fileID: 5224957522216808947, guid: 803850811fd012c4e87ac813cb7bf687,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -74.21
+      value: -26.6
       objectReference: {fileID: 0}
     - target: {fileID: 5224957522216808947, guid: 803850811fd012c4e87ac813cb7bf687,
         type: 3}

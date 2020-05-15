@@ -10,7 +10,7 @@ public class BulletStuff1 : MonoBehaviour
 	void OnCollisionEnter (Collision collision){
         Destroy(gameObject);
     }
-	void Update (){
+	void FixedUpdate (){
         this.transform.Translate(0,0,1f, Space.Self);// moves bullet forward
 		timer += 1.0F * Time.deltaTime;
 		if (timer >= 2){
