@@ -9,7 +9,7 @@ public class GunMover : MonoBehaviour
     public float speed = 50f;
     
 
-    void FixedUpdate(){
+    void Update(){
         target = mainCam.GetComponent<MouseLook>().hitPoint;        //gun will look at where the mouse is pointed
         Vector3 targetDirection = target - transform.position;      //free aim is only given while locked on so without
         float singleStep = speed * Time.deltaTime*4;                //the lock it will always aim at the center of screen

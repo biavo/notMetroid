@@ -53,7 +53,7 @@ public class tallguymove : MonoBehaviour
             jumping = GetComponent<ParabolaController>().Animation;
             agent = GetComponent<NavMeshAgent>();
             timer += Time.deltaTime;
-            if(timer >= jumpTimer && !jumping && playerDistance >= 15 && !eating){
+            if(timer >= jumpTimer && !jumping && playerDistance >= 25 && !eating){
                 Jump();
             }
             if(playerDistance >3){
@@ -69,7 +69,7 @@ public class tallguymove : MonoBehaviour
                     Jump();
                 }
             }
-            if (playerDistance < 15 && playerDistance > 3) {
+            if (playerDistance < 25 && playerDistance > 3) {
                 Walk();
                 eating = false;
             }
@@ -85,7 +85,7 @@ public class tallguymove : MonoBehaviour
             if(!jumping){
                 p1.transform.position = transform.position;
                 if(!eating){
-                    p2.transform.position = new Vector3(transform.position.x + xDistance/2, transform.position.y + yDistance*2/3 + 30, transform.position.z + zDistance/2);
+                    p2.transform.position = new Vector3(transform.position.x + xDistance/2, transform.position.y + yDistance/2 + 30, transform.position.z + zDistance/2);
                 } else {
                     p2.transform.position = new Vector3(transform.position.x + xDistance, transform.position.y + yDistance*2/3 + 30, transform.position.z + zDistance);
                 }
